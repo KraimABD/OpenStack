@@ -15,15 +15,17 @@ echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
 sudo -i -u stack bash << EOF
 echo "In"
 # Download DevStack, the current release is Xena" >> Continue.sh
-git clone -b stable/xena https://opendev.org/openstack/devstack.git"
+
+
+git clone -b stable/xena https://opendev.org/openstack/devstack.git
+
 cd devstack
-touch local.conf
 
-echo "ADMIN_PASSWORD=secret" >> local.conf
-echo "DATABASE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
-echo "RABBIT_PASSWORD=$ADMIN_PASSWORD" >> local.conf
-echo "SERVICE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+# if an error occurred the ip address of the host should be added in the local.conf
+mv  samples/local.conf local.conf
 
+
+echo "Run the script"
 ./stack.sh
 EOF
 
