@@ -1,7 +1,7 @@
 	 10.30.1.175 { 20GB Ubuntu-vg, + 40GB sda, virtual Disk} 2vCPU, RAM 8G,  Networking {ens160, ens192}
 	 10.30.1.176 { 20GB Ubuntu-vg, + 40GB sda, virtual Disk} 2vCPU, RAM 8G, Networking {ens160, ens192}
-	 10.30.1.177  { 20GB Ubuntu-vg, + 30GB sda, virtual Disk} 2vCPU, RAM 8G Networking {ens160, ens192}
-	 10.30.1.178 { 20GB Ubuntu-vg, + 20GB sda, virtual Disk}, 1vCPU , RAM 2G Networking {ens160, ens192}
+	 10.30.1.177  { 20GB Ubuntu-vg, + 30GB sda, virtual Disk} 2vCPU, RAM 8G Networking {ens160}
+	 10.30.1.178 { 20GB Ubuntu-vg, + 20GB sda, virtual Disk}, 1vCPU , RAM 2G Networking {ens160}
 
 -----------------------------AJOUT DES DISQUES CREATION DU VOLUME GROUP
 
