@@ -1,0 +1,42 @@
+
+
+
+
+SNAT, for NATing from the private addresses to the Public (ProviderAddressOfTheRouterInterface)
+1) Enabling SNAT, and the interface of the router took the ProviderIpAddress, any Machine on LAN should ping to internet, NSG Allows by default EGREES
+2) we use floating IPs only for external access, then One2One NAT is done.
+3) Chaib: Why not the switchProviderNetwork = Public Ip addresses $$$$
+4) "Provider on 203.0.113.0/24 with gateway 203.0.113.1"
+   This network requires a gateway to provide Internet access to instances in your OpenStack environment.
+5) The provider interface uses a special configuration without an IP address assigned to it. Configure the second interface as the provider interface:
+
+
+Solutions:
+1) I have solved this problem by redesigning my provider network. The neutron_external_network interface should be bonded to the interface which can have an Internet access. Thank you all again !
+2) if no free ip address available for kolla_internal_vip_address, please set enable_haproxy to "no"
+ifnot:
+	kolla_internal_vip_address: "10.10.10.254" should be an unused Ip address
+	network_interface: "eth0"
+	kolla_external_vip_address: "10.10.20.254"
+	kolla_external_vip_interface: "eth1"
+3) https://kyle.pericak.com/openstack-aio-ka-vm.html
+4) Faut-pas activé le dhcp en ProviderNetwork
+
+
+config_strategy: "COPY_ALWAYS"
+kolla_base_distro: "centos"   faced some errors with ubuntu
+kolla_install_type: "binary"  fast
+keepalived_virtual_router_id: "51" ,#If the VIP is different from the Controller Machine
+enable_neutron_provider_networks: yes
+enable_cinder_backend_iscsi: "yes"
+enable_cinder: "yes"
+enable_cinder_backend_iscsi: "yes"
+enable_cinder_backend_lvm: "yes"
+enable_heat: "yes"
+nova_compute_virt_type: "qemu"  # Because we're running neasted virtualisation
+nova_console
+
+
+Variables:
+	the switchport didn't allow the vlan
+
